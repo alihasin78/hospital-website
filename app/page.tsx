@@ -1,69 +1,130 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* Hero */}
+      <section className="hero">
+        <div className="container-clinic hero-grid">
+          <div>
+            <span className="badge-pill badge-teal badge-up" style={{ marginBottom: 20 }}>
+              Virtual Clinic · Telemedicine
+            </span>
+            <h1 className="display-xl" style={{ marginBottom: 20 }}>
+              Your clinic visit, from your living room.
+            </h1>
+            <p className="body-md lead" style={{ marginBottom: 28 }}>
+              Vitalis pairs real doctors with an AI Pre-Checkup Nurse: book a
+              slot online, get your vitals triaged before the consult, and meet
+              your doctor in a secure virtual room.
+            </p>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <Link href="/book" className="btn-teal">
+                Book an Online Slot →
+              </Link>
+              <Link href="/pre-checkup" className="btn-outline">
+                Meet the AI Nurse
+              </Link>
+            </div>
+          </div>
+
+          {/* Dark product surface — the 3-step journey */}
+          <div className="hero-visual">
+            <div className="flex-between" style={{ padding: "0 4px" }}>
+              <span className="caption-up" style={{ color: "var(--on-dark-soft)" }}>
+                The remote journey
+              </span>
+              <span className="badge-pill badge-dark">
+                <span className="dot-ok" /> 3 doctors online now
+              </span>
+            </div>
+            {[
+              {
+                n: "1",
+                t: "Book an Online Slot",
+                s: "Filter by specialty, pick a doctor, choose your time — no waiting room.",
+              },
+              {
+                n: "2",
+                t: "AI Nurse Pre-Checkup & Vitals",
+                s: "Record temperature, blood pressure, heart rate and SpO₂. Ava flags red-flag symptoms before the doctor ever joins.",
+              },
+              {
+                n: "3",
+                t: "Virtual Doctor Video Consultation",
+                s: "The doctor reviews your AI report live in the video room and issues an e-prescription you can download.",
+              },
+            ].map((s) => (
+              <div className="journey-step" key={s.n}>
+                <div className="step-num">{s.n}</div>
+                <div>
+                  <div className="js-title">{s.t}</div>
+                  <div className="js-sub">{s.s}</div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* How it helps */}
+      <section className="section" style={{ paddingTop: 24 }}>
+        <div className="container-clinic">
+          <h2 className="display-lg" style={{ marginBottom: 32 }}>
+            Care that starts before the call.
+          </h2>
+          <div className="grid-3">
+            {[
+              {
+                icon: "🩺",
+                t: "Triage, not guesswork",
+                d: "Our AI Nurse asks one targeted question at a time, screens for urgent red-flag symptoms, and compiles a clinical summary so your doctor starts the consult already informed.",
+              },
+              {
+                icon: "📊",
+                t: "Vitals with context",
+                d: "Temperature, blood pressure, heart rate and oxygen level are captured against normal-range indicators and attached to your appointment automatically.",
+              },
+              {
+                icon: "📝",
+                t: "E-prescriptions in minutes",
+                d: "At the end of the consultation, your digital prescription is ready to view and download — no pharmacy queue, no paper slips.",
+              },
+            ].map((f) => (
+              <div className="card-cream" key={f.t}>
+                <div style={{ fontSize: 28, marginBottom: 12 }}>{f.icon}</div>
+                <div className="title-md" style={{ marginBottom: 8 }}>
+                  {f.t}
+                </div>
+                <p className="body-sm text-muted2" style={{ margin: 0 }}>
+                  {f.d}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* CTA band */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container-clinic">
+          <div className="cta-band">
+            <h2 className="display-sm" style={{ marginBottom: 12 }}>
+              Ready to be seen — without going anywhere?
+            </h2>
+            <p className="body-md" style={{ color: "#d7e0ea", marginBottom: 24 }}>
+              Doctors are online today across four specialties.
+            </p>
+            <Link
+              href="/book"
+              className="btn-teal"
+              style={{ background: "var(--canvas)", color: "var(--blue)" }}
+            >
+              Book Your Appointment
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
